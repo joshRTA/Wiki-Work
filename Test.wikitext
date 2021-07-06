@@ -1,0 +1,28 @@
+
+<!-- Thieves' Stuff -->
+
+=== Thieves' STCs to Hookshot & Moon Pearl ===
+
+==== Using West & North STCs ====
+
+'''Notes'''
+* This is the safer method to use for this trick since West and North STCs are generally considered easier. It is several seconds slower than the other strat, which uses an East STC followed by a South STC. 
+
+==== Using East & South STCs ====
+
+'''Notes'''
+
+<!-- Hookpush Applications -->
+
+===Checkerboard Cave to Pyramid Fairy===
+
+{{VideoBox
+|file= File:loremipsum
+}}
+
+'''Notes'''
+* Fire two arrows left into the block. These will occupy Slots 3 and 4.
+* Menu to Lamp and use it once while facing left. This will put a Lamp Flame in Slot 2, which will set your Search Index to <code>$10</code>.
+* Face up and hold {{B|B}} to lock Link's facing direction to the North. Press his back against the block below him. It's essential he's flush with this block and facing North before proceeding to the next steps. Let go of {{B|B}} when in position.
+* Menu to the Red Boomerang and throw it North. Immediately menu to Somaria. When the Red Boomerang clinks the top wall, place a Somaria Block. Assuming you're quick enough to do this before the arrows despawn and you have good timing on the block placement, this block will be written to Slot 9.
+* Menu back to the Red Boomerang and throw it north. Slash sword when it tinks the wall. Repeat this step once. This should manipulate the duration counters for Slots 1-3 to be nonzero and the counter in Slot 0 should be <code>4C</code> specifically.
