@@ -1,0 +1,61 @@
+Weirdshot is a Major Glitch that uses [[Ancilla glitches|Misslotting]] to have the Hookshot travel in the opposite layer of Link.
+
+== Loose Explanation ==
+
+First of all, you'll want to make sure you've read the "Terminology" Section of [[Ancilla glitches]] before reading through this. Also probably want to read a little about Misslotting on that page. It'll make this stuff make more sense.
+
+Weirdshot is caused by the Boomerang or a Bomb being Misslotted 5 Slots higher than the Hookshot. Typically this will mean Boom/Bomb is Misslotted to Slot 8 or 9 and Hookshot is used from Slot 3 or 4 respectively.
+
+When this happens, the Hookshot will be checking collision in the wrong layer, either for every frame or for some frames, depending on the setup. The only way this trick is currently used in RTA speedruns is for latching onto something on the opposite layer of Link, which allows him to exit [[Exploration Glitch|EG]] in rooms he normally wouldn't be able to.
+
+== Technical Details ==
+
+When the Hookshot is used, it checks collision every frame as it's extending. If the value at the array <code>$03A4</code> in the Hookshot's Slot is nonzero, the Hookshot will check collision in the layer opposite of the one Link is in. It's unclear why this is even a mechanic, because as you've probably noticed, the Hookshot is never able to latch onto stuff on the floors above or below Link in normaly gameplay. This is likely a test feature that just wasn't removed from the game's release. In any case, when the Hookshot is used, this value is set to 0 at the Hookshot's slot, and the game trusts that it will remain as such.
+
+Meanwhile there's a different array that Bombs and the Boomerang use as a timer of sorts: <code>$039F</code>. Bombs use this array for their fuse timer, with <code>$AA</code> (170 in decimal) being set here as soon as they're planted. Then they count down every frame to 0, when the Bomb will explode. The Boomerang uses this array as an animation timer. It will decrement the value stored until it gets to 0 and then set it back to 3 and repeat.
+
+Crucially, this timer array the Boomerang and Bombs use only has room for 5 elements that fit with Front Slot ancillae. If we can load Boomerang or a Bomb into the Back Slots, then they will start storing data in <code>$03A4</code>. Hey, that's the same array the Hookshot is using to determine which layer to check collision in!
+
+We need to have the Hookshot in a slot that's 5 slots below where the Boomerang/Bomb is loaded because that's when they'll be using the exact same address. For example, the 4th index in <code>$03A4</code> is <code>$03A8</code>, and the 9th index in <code>$039F</code> is also <code>$03A8</code>. So a Slot 9 Bomb will be influencing which layer a Slot 4 Hookshot is checking collision in.
+
+== General How-To ==
+
+# The first step is to Misslot Boomerang or a Bomb into Slot 8 or 9. To do this we need the Search Index to be above <code>09</code> (for Misslotting to Slot 9) or we need it to be exactly <code>09</code> (for Misslotting to Slot 8).
+# Fill the Front Slots with Ancillae. This is necessary because Boomerang and Bombs occupy a Front Slot by default, but we want to spawn them in a Back Slot.
+# Have the Slot we want to Misslot to occupied with a Particle Ancilla.
+# If the above conditions are met, then using a Bomb or the Boomerang will Misslot them into Slot 8 or 9. Now our Hookshot will be able to connect with objects on the opposite layer from Link. Note that if you Misslotted to Slot 8, you'll need to Hookshot from Slot 3. This is easily done by tapping {{B|A}} to kick up dash dust just before using the Hookshot.
+
+== Applications ==
+
+=== Agahnim 2 Weirdshot ===
+
+{{VideoBox
+|file= File:Agahnim2 Weirdshot.mp4
+}}
+
+This trick is used in MG Speedruns to quickly reach the Agahnim2 fight after completing Ice Palace. Note that this requires the player has Ice Palace big key in their inventory -- otherwise you can't open the big key door.
+
+''' Notes '''
+* Preceding this trick will be a [[Hookpush]] into EG in the first room of Ice Palace. This means our Search Index will be <code>09</code>, which also means that we want to do this trick with Slot 8 Bomb and Slot 3 Hookshot.
+
+=== Helma Door Weirdshot ===
+
+==== Without Red Boomerang/Silver Arrows ====
+
+==== With Red Boomerang/Silver Arrows ====
+
+=== Spike Cave Weirdshot ===
+
+{{VideoBox
+|file= File:}}
+
+This trick is currently used in 100% (MG) to exit EG in Spike Cave.
+
+'''Notes'''
+* Preceding this trick will be a [[Hookpush]] into EG in Pyramid Fairy room. This means our Search Index will be <code>09</code>, which also means that we want to do this trick with Slot 8 Bomb and Slot 3 Hookshot.
+* Face up after entering the room. Watch for the camera to shift upwards indicating that Link has moved up and is facing north.
+* Press and hold {{B|B}} to hold a sword charge and wait for the beam to go offscreen. This takes getting a feel for, but you can only be too fast -- never too slow. To help with optimizing this, you can turn on the Ancillae Super watch in the Practice Hack.
+* Fire a Silver Arrow and wait for the entire sfx of the bow shot to happen. Menu to Bombs and immediately plant one out of the menu. It should be loaded in Slot 8.
+* Walk up and begin a dash north. It's essential you walk up some so you don't pick up the bomb when you go to dash.
+* Cancel your dash with {{B|^>}} around when the big block is roughly in the center of the screen (this isn't very precise).
+* Tap {{B|A}} and use the Hookshot to grab the pots on the left side of the room. This will pull you in-bounds.
